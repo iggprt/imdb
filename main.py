@@ -1,65 +1,34 @@
+
+""" Main module """
+
+
+
 from bs4 import BeautifulSoup
 import requests
 import re
+import imdblib
 
-f = open("WATCHLIST.csv","r")
-test = open("text.txt","r").read()
-fw = open("trouble.txt","w")
+file = open("WATCHLIST.csv","r")
 
-class title():
-
-	soup = ""
-	link = ""
-
-	def __init__(self, link):
-		self.link = link
-
-	@property
-	def name(self):
-		source = requests.get ( self.link ).text
-		soup = BeautifulSoup ( source, 'lxml' )
-
-		pattern = re.compile(r'<strong>([a-zA-Z\s\']+)</strong>')
-		matches = pattern.findall(source)
-		if matches!=[]:
-			return (matches[0])
-		else:
-			return ("error")
 
 
 def main():
 
 	i = 0
-
-	for link in f:
-		"""
-		i+=1
-		source = requests.get(link[:-1]).text
-		soup = BeautifulSoup(source,'lxml')
-		#print (soup.prettify)
-		year = soup.find_all('span', id  = 'titleYear')[0].text[1:-1]
-		#print (soup.find_all('div', class_ = 'txt-block'))
+	for link in file:
 		
-		if year != "None":
-			print (year+" ",i)
-		else:
-			fw.write(link[:-1] + " " + str(year) + "\n")
-
-		try:
-			print( soup.find('div', class_ = 'originalTitle').text [:-17])
-		except :
-			print ('bla bla')
-		"""
+		i = i + 1
 		link = link[:-1]
-		new = title(link)
-		#print (actor.__dict__)
-		print (new.name)
+		movie = imdblib.Title(link)
+
+		#str_ = str(movie.name)+ ' ' + str(movie.year) + str(movie.__repr__) + str(type(movie.year))
+		#str_ = str(movie.name)
+		#print (str (i) + '. ' +  str_ + ' ' +str(round(i/1625, 3))+ '%')
+
+		#print (movie.genre, end = " ")
+		#print (movie.name, end = " ")
+		print (str(movie.storyline.strip()) + movie.title )
+
 
 if __name__ == "__main__":
 	main()
-
-
-
-
-
-
