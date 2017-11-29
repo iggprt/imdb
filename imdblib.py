@@ -15,8 +15,7 @@ class Title():
 
 		self.link = link
 		self.source = requests.get ( link ).text
-		self.soup = BeautifulSoup ( self.source, 'lxml' )
-		#time.sleep(1)
+		self.soup = BeautifulSoup ( self.source,"lxml" )
 
 	@property
 	def title(self):
@@ -27,6 +26,9 @@ class Title():
 		else:
 			return "__NameError__"
 
+	@property
+	def movieID(self):
+		pass
 
 	@property
 	def titleYear(self):
@@ -53,6 +55,8 @@ class Title():
 
 	@property
 	def contentRating(self):
+		""" There is a problem with that. It doesn't work for Scarface and some other movies"""
+
 
 		matches = self.soup.find_all('meta', itemprop='contentRating')
 		#matches = self.soup.find_all('span', itemprop='contentRating')
@@ -60,7 +64,11 @@ class Title():
 		if matches != []:
 			return matches[0].get('content')
 		else:
-			return "__RatedError__" + self.name
+			#pattern = re.compile(r'contentRating">(.+)<')
+			#pattern = re.compile(r'g">(.+)</span')
+			#pattern = re.compile(r'content="(.+)">')
+			#matches = pattern.findall(self.source)
+			return "__RatedError__" + self.title# + str(matches) + str(len(matches))
 
 
 	@property
@@ -104,6 +112,143 @@ class Title():
 		matches = self.soup.find_all('div', itemprop='description')
 
 		if matches != []:
-			return matches[0].text
+			return matches[0].text.strip()
 		else:
-			return "__YearError__"
+			return "__StoryLineError__"
+
+
+
+	@property
+	def originalTitle(self):
+
+		matches = self.soup.find_all('div', class_ = 'originalTitle')
+
+		if matches != []:
+			if matches[0].text[:-17] != self.title:
+				return matches[0].text[:-17]
+			return None
+		else:
+			return None
+
+
+	@property
+	def budget(self):
+
+		pattern = re.compile(r'Budget:</h4>((.|\n)+)<span\sclass="attribute"')
+
+		matches = pattern.findall(self.source)
+
+		
+
+
+
+		print (matches)
+		print ("\n")
+		#return matches 
+
+
+	@property
+	def directors(self):
+		pass
+
+	@property
+	def writers(self):
+		pass
+
+	@property
+	def actors(self):
+		pass
+
+	@property
+	def oscars(self):
+		pass
+
+	@property
+	def metascore(self):
+		pass
+
+	@property
+	def productionCo(self):
+		pass
+
+
+
+
+
+
+class Actor():
+	"""docstring for ClassName"""
+
+	def __init__(self, link):
+
+		self.link = link
+		self.source = requests.get ( link ).text
+		self.soup = BeautifulSoup ( self.source,"lxml" )
+
+		self.biosource = requesets.get(link+'bio/')
+		self.biosoup = BeautifulSoup (self.biosource, 'lxml')
+
+	@property
+	def name(self):
+		pass
+
+	@property
+	def birthDate(self):
+		pass
+
+	@property
+	def birthPlace(self):
+		pass
+
+	@property
+	def jobs(self):
+		pass
+
+	@property
+	def hight(sefl):
+		pass
+
+	@property
+	def death(self):
+		pass
+
+	@property
+	def oscars(self):
+		pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
