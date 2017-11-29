@@ -1,0 +1,30 @@
+doua clase
+
+ACTOR:
+- nume
+- data nastere
+- locul nasterii
+- jobs
+- bio ???
+- inaltime
+- data mortii(?)
+- no. oscars
+
+
+TITLLE:
+- title              V
+- original title(?)  V
+- year               V
+- genre              V
+- rating             ??
+- imdb rating        V
+- no. reviews        V
+- directors
+- writers
+- 15 actors
+- no. oscars
+- runtime
+- budget
+- metascore
+- storyline
+- production co

@@ -52,11 +52,6 @@ def actor_get_jobs(local_html):
 	matches = pattern.findall(local_html)
 	
 	return matches
-
-	
-	
-	
-	
 	
 	
 	
@@ -126,6 +121,7 @@ def title_get_actors(local_html):
 	#print len(matches)
 	
 	return matches 
+
 
 def title_get_director(local_html):
 
