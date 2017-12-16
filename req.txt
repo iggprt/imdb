@@ -12,8 +12,12 @@ ACTOR:
 
 
 TITLLE:
+<<<<<<< HEAD
 - title
 - ID   	              
+=======
+- title              V
+>>>>>>> 73f25af20b4cae13f11b6931b20b8c50147ceea4
 - original title(?)  V
 - year               V
 - genre              V
