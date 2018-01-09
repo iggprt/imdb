@@ -62,5 +62,5 @@ for film in films:
 	for num in act:
 		genre_bind_entry( num, film[1] )
 		
-
+conn.close()
 
